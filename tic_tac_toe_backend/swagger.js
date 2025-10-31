@@ -4,10 +4,14 @@ const options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'My Express API',
+      title: 'Tic Tac Toe API',
       version: '1.0.0',
-      description: 'A simple Express API documented with Swagger',
-    }
+      description: 'REST API for a Tic Tac Toe game with in-memory storage, turn enforcement, and optional AI.',
+    },
+    tags: [
+      { name: 'Health', description: 'Service health checks' },
+      { name: 'Games', description: 'Tic Tac Toe game endpoints' },
+    ],
   },
   apis: ['./src/routes/*.js'], // Path to the API docs
 };

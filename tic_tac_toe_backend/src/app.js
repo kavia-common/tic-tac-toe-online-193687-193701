@@ -44,12 +44,19 @@ app.use(express.json());
 // Mount routes
 app.use('/', routes);
 
-// Error handling middleware
+/**
+ * Error handling middleware
+ * Returns JSON error with status code and message.
+ */
 app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({
+  const status = err.status || 500;
+  const message = err.message || 'Internal Server Error';
+  if (status >= 500) {
+    console.error(err.stack || err);
+  }
+  res.status(status).json({
     status: 'error',
-    message: 'Internal Server Error',
+    message,
   });
 });
 
